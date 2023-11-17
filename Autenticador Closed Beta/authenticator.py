@@ -17,26 +17,21 @@ bancodelogins = {
 }
 
 def login():
-    username = input("Digite o seu nome de usuário: ")
-    password = input("Digite a sua senha: ")
+    while True:
+        username = input("\nDigite o seu nome de usuário: ")
+        password = input("Digite a sua senha: ")
 
-    if username in bancodelogins and bancodelogins[username] == password:
-        print("Login bem-sucedido!")
-    else:
-        print("Nome de usuário ou senha incorreta. Tente novamente.")
+        codigo_usuario = (input("Código: "))
+        testecodigo = (codigo.verify(codigo_usuario))
+
+        if username in bancodelogins and bancodelogins[username] == password and testecodigo == True:
+            print("Login bem-sucedido!")
+            return True
+        else:
+            print("Nome de usuário/senha incorreta ou código invalido. Tente novamente.")
 
 # Teste do sistema de login
-login()
-
-#Autenticação
-codigo_usuario = (input("Código: "))
-testecodigo = (codigo.verify(codigo_usuario))
-
-if testecodigo == False:
-    print("Código incorreto, tente novamente!")
-
-else:
-
+while not login():
 #Menu de opções do banco    
     voltar = True
 def menu():
@@ -48,9 +43,9 @@ def menu():
     'Reflorestamento': 0,
     'Redução de Emissões': 0
 }
-
+    
     while True:
-        print("Selecione uma opção:")
+        print("\n\nSelecione uma opção:")
         print("1. Depositar créditos de carbono na sua conta")
         print("2. Retirar créditos de carbono de sua conta")
         print("3. Calcular o valor de seus créditos de carbono")
@@ -60,31 +55,32 @@ def menu():
         choice = (input("Escolha uma opção: "))
 
         if choice == "1":
-            print("Você selecionou a opção 1: Depositar créditos de carbono a sua conta")
+            print("\n\nVocê selecionou a opção 1: Depositar créditos de carbono a sua conta")
             voltar = False
             def menudeposita():
 
                 while True:
-                    print("Fontes de crédito de carbono:")
+                    print("\nFontes de crédito de carbono:")
                     print("1. Energia Eólica")
                     print("2. Painéis Solares")
                     print("3. Combustíveis Renováveis")
                     print("4. Reflorestamento")
                     print("5. Redução de Emissões")
                     print("6. Sair")
-                    choice = (input("Escolha em qual tipo de fonte deseja depositar esse crédito: "))
+                    choice = (input("\n\nEscolha em qual tipo de fonte deseja depositar esse crédito: "))
                     
                     if choice == "1":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser depositada para Energia Eólica: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser depositada para Energia Eólica: "))
                         if (creditos['Energia Eólica'] + quantidade) <0:
                             print("Não é possível depositar essa quantidade")
                         else:    
                             creditos['Energia Eólica'] += quantidade
                             print(f"{quantidade} créditos de carbono adicionados para Energia Eólica.")
+                            for forma, qtd in creditos.items():
+                                print(f"{forma}: {qtd}")
                             
-
                     elif choice == "2":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser depositada para Painéis Solares: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser depositada para Painéis Solares: "))
                         if (creditos['Painéis Solares'] + quantidade) <0:
                             print("Não é possível depositar essa quantidade")
                         else:
@@ -94,7 +90,7 @@ def menu():
                                 print(f"{forma}: {qtd}")
 
                     elif choice == "3":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser depositada para Combustíveis Renováveis: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser depositada para Combustíveis Renováveis: "))
                         if (creditos['Combustíveis Renováveis'] + quantidade) <0:
                             print("Não é possível depositar essa quantidade")
                         else:
@@ -104,7 +100,7 @@ def menu():
                                 print(f"{forma}: {qtd}")
 
                     elif choice == "4":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser depositada para Reflorestamento: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser depositada para Reflorestamento: "))
                         if (creditos['Reflorestamento'] + quantidade) <0:
                             print("Não é possível depositar essa quantidade")
                         else:
@@ -114,7 +110,7 @@ def menu():
                                 print(f"{forma}: {qtd}")    
                     
                     elif choice == "5":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser depositada para Redução de Emissões: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser depositada para Redução de Emissões: "))
                         if (creditos['Redução de Emissões'] + quantidade) <0:
                             print("Não é possível depositar essa quantidade")
                         else:
@@ -132,16 +128,15 @@ def menu():
 
             if __name__ == "__main__":
                 menudeposita()
-            print(menudeposita)
                 
 
         elif choice == "2":
-            print("Você selecionou a opção 2: Retirar créditos de carbono da sua conta")
+            print("\n\nVocê selecionou a opção 2: Retirar créditos de carbono da sua conta")
             voltar = False
             def menuretira():
 
                 while True:
-                    print("Fontes de crédito de carbono:")
+                    print("\nFontes de crédito de carbono:")
                     print("1. Energia Eólica")
                     print("2. Painéis Solares")
                     print("3. Combustíveis Renováveis")
@@ -151,7 +146,7 @@ def menu():
                     choice = input("Escolha de qual tipo de fonte deseja retirar esse crédito:")
 
                     if choice == "1":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser retirada de Energia Eólica: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser retirada de Energia Eólica: "))
                         if (creditos['Energia Eólica'] - quantidade) <0:
                             print("Não é possível retirar essa quantidade")
                         else:          
@@ -161,7 +156,7 @@ def menu():
                                 print(f"{forma}: {qtd}")
 
                     elif choice == "2":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser retirada de Painéis Solares: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser retirada de Painéis Solares: "))
                         if (creditos['Painéis Solares'] - quantidade) <0:
                             print("Não é possível retirar essa quantidade")
                         else:    
@@ -171,7 +166,7 @@ def menu():
                                 print(f"{forma}: {qtd}")
 
                     elif choice == "3":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser retirada de Combustíveis Renováveis: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser retirada de Combustíveis Renováveis: "))
                         if (creditos['Combustíveis Renováveis'] - quantidade) <0:
                             print("Não é possível retirar essa quantidade")
                         else:
@@ -181,7 +176,7 @@ def menu():
                                 print(f"{forma}: {qtd}")
 
                     elif choice == "4":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser retirada de Reflorestamento: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser retirada de Reflorestamento: "))
                         if (creditos['Reflorestamento'] - quantidade) <0:
                             print("Não é possível retirar essa quantidade")
                         else:    
@@ -191,7 +186,7 @@ def menu():
                                 print(f"{forma}: {qtd}")   
                     
                     elif choice == "5":
-                        quantidade = int(input("Digite a quantidade de créditos de carbono a ser retirada de Redução de Emissões: "))
+                        quantidade = int(input("\nDigite a quantidade de créditos de carbono a ser retirada de Redução de Emissões: "))
                         if (creditos['Redução de Emissões'] - quantidade) <0:
                             print("Não é possível retirar essa quantidade")
                         else:
@@ -204,14 +199,13 @@ def menu():
                         return voltar
                     
                     else:
-                        print("Opção inválida. Tente novamente.")
+                        print("\nOpção inválida. Tente novamente.")
 
             if __name__ == "__main__":
                 menuretira()
-            print(menuretira)
 
         elif choice == "3":
-            print("Você selecionou a opção 3. Calcular o valor de seus créditos de carbono")
+            print("\nVocê selecionou a opção 3. Calcular o valor de seus créditos de carbono")
             for forma, qtd in creditos.items():
                 a = (creditos['Energia Eólica'] * 25)
                 b = (creditos['Painéis Solares'] * 25)
@@ -227,12 +221,12 @@ def menu():
                 
         
         elif choice == "4":
-            print("Você selecionou a opção 4. Verificar seus créditos")
+            print("\nVocê selecionou a opção 4. Verificar seus créditos")
             for forma, qtd in creditos.items():
                 print(f"{forma}: {qtd}")
 
         elif choice == "5":
-            print("Para calcularmos o quanto gastou de carbono, necessitamos que passe as seguintes informações:")
+            print("\nPara calcularmos o quanto gastou de carbono, necessitamos que passe as seguintes informações:")
             tel = int(input("Insira o número de telefones que usa nosso autenticador:"))
             cargatel = int(input("Quantas vezes recarrega o celular no dia?:"))
             mesestel = cargatel * 31
@@ -246,13 +240,12 @@ def menu():
             print(f"O gasto do(s) computadores é de {gastopc}kWh por mês")
             print(f"O gasto total de carbono dos seus dispositivos é de {gastoCO:.2f}kg por mês")
         elif choice == "6":
-            print("Saindo do programa, obrigado por utilizar nossos serviços")
+            print("\nSaindo do programa, obrigado por utilizar nossos serviços")
             break
 
         else:
-            print("Opção inválida. Tente novamente.")
+            print("\nOpção inválida. Tente novamente.")
 
 if __name__ == "__main__":
     menu()
 
-print(menu)
