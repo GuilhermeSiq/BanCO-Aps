@@ -207,16 +207,16 @@ def menu():
         elif choice == "3":
             print("\nVocê selecionou a opção 3. Calcular o valor de seus créditos de carbono")
             for forma, qtd in creditos.items():
-                a = (creditos['Energia Eólica'] * 25)
-                b = (creditos['Painéis Solares'] * 25)
-                c = (creditos['Combustíveis Renováveis'] * 25)
-                d = (creditos['Reflorestamento'] * 25)
-                e = (creditos['Redução de Emissões'] * 25)
+                a = (creditos['Energia Eólica'] * 76)
+                b = (creditos['Painéis Solares'] * 76)
+                c = (creditos['Combustíveis Renováveis'] * 76)
+                d = (creditos['Reflorestamento'] * 76)
+                e = (creditos['Redução de Emissões'] * 76)
                 print('Energia Eólica:', a , "Reais")
-                print('Painéis Solares:', a , "Reais")
-                print('Combustíveis Renováveis:', a , "Reais")
-                print('Reflorestamento:', a , "Reais")
-                print('Redução de Emissões:', a , "Reais")
+                print('Painéis Solares:', b , "Reais")
+                print('Combustíveis Renováveis:', c , "Reais")
+                print('Reflorestamento:', d , "Reais")
+                print('Redução de Emissões:', e , "Reais")
                 break
                 
         
